@@ -12,6 +12,9 @@ interface StatsDashboardProps {
   settings: AppSettings;
 }
 
+const renderPieLabel = ({ name, percent }: { name?: string; percent?: number }) =>
+  `${name ?? ''} (${((percent ?? 0) * 100).toFixed(0)}%)`;
+
 export const StatsDashboard: React.FC<StatsDashboardProps> = ({ weeks, settings }) => {
   const scoredWeeks = useMemo(() => weeks.filter(w => w.score !== null), [weeks]);
 
@@ -152,7 +155,7 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({ weeks, settings 
         <h3 className="text-xs tracking-widest uppercase text-stone-500 font-medium mb-4">Score Distribution</h3>
         <ResponsiveContainer width="100%" height={200}>
           <PieChart>
-            <Pie data={distributionData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} label={({ name, percent }: { name?: string; percent?: number }) => `${name ?? ''} (${((percent ?? 0) * 100).toFixed(0)}%)`}>
+            <Pie data={distributionData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} label={renderPieLabel}>
               {distributionData.map((entry, index) => (
                 <Cell key={index} fill={SCORE_COLORS[entry.score]} />
               ))}
