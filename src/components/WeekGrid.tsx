@@ -54,18 +54,18 @@ export const WeekGrid: React.FC<WeekGridProps> = ({ weeks, settings, currentWeek
       {yearGroups.map((yearGroup) => (
         <div key={yearGroup.yearIndex}>
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px bg-stone-200 flex-1" />
-            <span className="text-xs tracking-widest uppercase text-stone-400 font-medium">
+            <div className="h-px bg-stone-200 dark:bg-stone-700 flex-1" />
+            <span className="text-xs tracking-widest uppercase text-stone-400 dark:text-stone-500 font-medium">
               {getYearLabel(yearGroup.yearIndex, settings.collegeStartDate)}
             </span>
-            <div className="h-px bg-stone-200 flex-1" />
+            <div className="h-px bg-stone-200 dark:bg-stone-700 flex-1" />
           </div>
           
           <div className="space-y-3">
             {yearGroup.semesterGroups.map((semGroup, si) => (
               <div key={si} className="flex items-center gap-3">
                 <div className="w-20 text-right">
-                  <span className={`text-xs font-medium ${semGroup.isHoliday ? 'text-blue-400' : 'text-stone-500'}`}>
+                  <span className={`text-xs font-medium ${semGroup.isHoliday ? 'text-blue-400 dark:text-blue-500' : 'text-stone-500 dark:text-stone-400'}`}>
                     {semGroup.name}
                   </span>
                 </div>

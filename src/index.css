@@ -14,6 +14,11 @@ body {
   color: #3D3429;
 }
 
+.dark body {
+  background-color: #1C1917;
+  color: #E7E5E4;
+}
+
 .font-serif-display {
   font-family: 'DM Serif Display', serif;
 }

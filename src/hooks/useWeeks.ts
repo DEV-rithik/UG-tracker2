@@ -48,12 +48,13 @@ export function useWeeks() {
     setCurrentWeekIndex(getCurrentWeekIndex(savedWeeks));
   }, []);
 
-  const scoreWeek = useCallback(async (weekId: number, score: number | null, remarks: string, goal: string) => {
+  const scoreWeek = useCallback(async (weekId: number, score: number | null, remarks: string, goal: string, photos?: string[]) => {
     await updateWeek(weekId, {
       score,
       remarks,
       goal,
       scoredAt: score !== null ? new Date().toISOString() : null,
+      ...(photos !== undefined ? { photos } : {}),
     });
     
     const updatedWeeks = await getAllWeeks();

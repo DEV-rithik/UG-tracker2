@@ -12,6 +12,11 @@ export class UGTrackerDB extends Dexie {
       weeks: '++id, weekNumber, overallWeekNumber, startDate, semesterIndex, yearIndex',
       settings: '++id',
     });
+    // Version 2: adds photos[] field to WeekData (no new indexes needed, Dexie handles object properties)
+    this.version(2).stores({
+      weeks: '++id, weekNumber, overallWeekNumber, startDate, semesterIndex, yearIndex',
+      settings: '++id',
+    });
   }
 }
 

@@ -11,6 +11,7 @@ export interface WeekData {
   yearIndex: number;
   isHoliday: boolean;
   scoredAt: string | null; // ISO timestamp
+  photos?: string[]; // base64 encoded images, max 3
 }
 
 export interface SemesterConfig {
