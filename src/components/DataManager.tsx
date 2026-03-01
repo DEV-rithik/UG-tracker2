@@ -35,7 +35,7 @@ export const DataManager: React.FC<DataManagerProps> = ({ weeks, settings, onImp
       
       onImport();
       alert('Data imported successfully!');
-    } catch (_err) {
+    } catch {
       alert('Failed to import data. Please check the file format.');
     }
   };

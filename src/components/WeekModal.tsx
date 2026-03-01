@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { WeekData } from '../types';
 import { SCORE_COLORS, HOLIDAY_SCORE_COLORS, SCORE_LABELS } from '../utils/constants';
 import { formatDateDisplay } from '../utils/dateUtils';
@@ -9,20 +9,10 @@ interface WeekModalProps {
   onSave: (weekId: number, score: number | null, remarks: string, goal: string) => void;
 }
 
-export const WeekModal: React.FC<WeekModalProps> = ({ week, onClose, onSave }) => {
-  const [score, setScore] = useState<number | null>(null);
-  const [remarks, setRemarks] = useState('');
-  const [goal, setGoal] = useState('');
-
-  useEffect(() => {
-    if (week) {
-      setScore(week.score);
-      setRemarks(week.remarks);
-      setGoal(week.goal);
-    }
-  }, [week]);
-
-  if (!week) return null;
+const WeekModalInner: React.FC<{ week: WeekData; onClose: () => void; onSave: WeekModalProps['onSave'] }> = ({ week, onClose, onSave }) => {
+  const [score, setScore] = useState<number | null>(week.score);
+  const [remarks, setRemarks] = useState(week.remarks);
+  const [goal, setGoal] = useState(week.goal);
 
   const colors = week.isHoliday ? HOLIDAY_SCORE_COLORS : SCORE_COLORS;
 
@@ -105,4 +95,9 @@ export const WeekModal: React.FC<WeekModalProps> = ({ week, onClose, onSave }) =
       </div>
     </div>
   );
+};
+
+export const WeekModal: React.FC<WeekModalProps> = ({ week, onClose, onSave }) => {
+  if (!week) return null;
+  return <WeekModalInner key={week.id} week={week} onClose={onClose} onSave={onSave} />;
 };
