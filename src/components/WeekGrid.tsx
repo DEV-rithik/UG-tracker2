@@ -79,6 +79,7 @@ export const WeekGrid: React.FC<WeekGridProps> = ({ weeks, settings, currentWeek
                         isCurrent={weekIdx === currentWeekIndex}
                         isPast={weekIdx < currentWeekIndex}
                         onClick={() => onWeekClick(week)}
+                        semesterName={semGroup.name}
                       />
                     );
                   })}
