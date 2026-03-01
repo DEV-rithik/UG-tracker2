@@ -27,22 +27,22 @@ export const SetupForm: React.FC<SetupFormProps> = ({ onSetup, initialDate }) =>
 
   return (
     <div className="max-w-lg mx-auto">
-      <div className="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+      <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 p-8 shadow-sm">
         <div className="mb-6">
-          <label className="block text-xs tracking-widest uppercase text-stone-500 font-medium mb-3">
+          <label className="block text-xs tracking-widest uppercase text-stone-500 dark:text-stone-400 font-medium mb-3">
             First Day of Your UG
           </label>
           <input
             type="date"
             value={startDate}
             onChange={(e) => handleDateChange(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-400 text-sm"
+            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-600 bg-stone-50 dark:bg-stone-700 text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-400 text-sm"
           />
         </div>
 
         <button
           onClick={() => setShowAdjust(!showAdjust)}
-          className="mb-6 text-xs tracking-widest uppercase text-stone-500 hover:text-stone-700 flex items-center gap-2 transition-colors"
+          className="mb-6 text-xs tracking-widest uppercase text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 flex items-center gap-2 transition-colors"
         >
           <span className="text-lg">{showAdjust ? '⊖' : '⊕'}</span>
           Adjust Individual Semester Dates
@@ -55,7 +55,7 @@ export const SetupForm: React.FC<SetupFormProps> = ({ onSetup, initialDate }) =>
         <button
           onClick={handleSubmit}
           disabled={!startDate}
-          className="w-full py-3 px-6 bg-stone-800 text-stone-50 rounded-xl font-medium text-sm tracking-widest uppercase hover:bg-stone-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="w-full py-3 px-6 bg-stone-800 dark:bg-stone-200 text-stone-50 dark:text-stone-900 rounded-xl font-medium text-sm tracking-widest uppercase hover:bg-stone-700 dark:hover:bg-stone-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           Build My Calendar →
         </button>
