@@ -10,7 +10,6 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChange, onReset }) => {
   const tabs = [
     { id: 'dashboard' as AppView, label: '📅 Tracker' },
-    { id: 'stats' as AppView, label: '📊 Statistics' },
     { id: 'data' as AppView, label: '💾 Data' },
   ];
 
