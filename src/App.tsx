@@ -6,7 +6,6 @@ import { StatsBar } from './components/StatsBar';
 import { Legend } from './components/Legend';
 import { WeekGrid } from './components/WeekGrid';
 import { WeekModal } from './components/WeekModal';
-import { StatsDashboard } from './components/StatsDashboard';
 import { DataManager } from './components/DataManager';
 import { useWeeks } from './hooks/useWeeks';
 import type { WeekData, AppView } from './types';
@@ -36,9 +35,9 @@ function App() {
       <div className="max-w-5xl mx-auto px-4 py-8">
         <Header />
         
-        {!settings?.setupComplete ? (
-          <SetupForm onSetup={setupCalendar} />
-        ) : (
+        <SetupForm onSetup={setupCalendar} initialDate={settings?.collegeStartDate} />
+
+        {settings?.setupComplete && (
           <>
             <Navigation currentView={view} onViewChange={setView} onReset={handleReset} />
 
@@ -72,10 +71,6 @@ function App() {
                   />
                 </div>
               </>
-            )}
-
-            {view === 'stats' && (
-              <StatsDashboard weeks={weeks} settings={settings} />
             )}
 
             {view === 'data' && (

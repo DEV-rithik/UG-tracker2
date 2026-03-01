@@ -5,10 +5,11 @@ import { SemesterAdjust } from './SemesterAdjust';
 
 interface SetupFormProps {
   onSetup: (startDate: string, semesters?: SemesterConfig[]) => void;
+  initialDate?: string;
 }
 
-export const SetupForm: React.FC<SetupFormProps> = ({ onSetup }) => {
-  const [startDate, setStartDate] = useState('');
+export const SetupForm: React.FC<SetupFormProps> = ({ onSetup, initialDate }) => {
+  const [startDate, setStartDate] = useState(initialDate ?? '');
   const [showAdjust, setShowAdjust] = useState(false);
   const [semesters, setSemesters] = useState<SemesterConfig[]>([]);
 
