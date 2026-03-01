@@ -73,17 +73,32 @@ function App() {
               <>
                 {currentWeekIndex >= 0 && weeks[currentWeekIndex] && (
                   <div className="bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 p-4 mb-4 shadow-sm">
-                    <div className="flex flex-wrap gap-4 items-center text-xs text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                      {!weeks[currentWeekIndex].isHoliday && settings.semesters[weeks[currentWeekIndex].semesterIndex] && (
-                        <span className="font-medium text-stone-700 dark:text-stone-300">
-                          {settings.semesters[weeks[currentWeekIndex].semesterIndex].name}
-                        </span>
-                      )}
-                      {weeks[currentWeekIndex].isHoliday && (
-                        <span className="font-medium text-blue-600 dark:text-blue-400">Holiday Break</span>
-                      )}
-                      <span>Today: {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</span>
-                      <span>Overall Week {weeks[currentWeekIndex].overallWeekNumber} of {weeks.length}</span>
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <div>
+                        {!weeks[currentWeekIndex].isHoliday && settings.semesters[weeks[currentWeekIndex].semesterIndex] ? (
+                          <>
+                            <div className="font-serif text-2xl text-stone-800 dark:text-stone-100" style={{ fontFamily: "'DM Serif Display', serif" }}>
+                              {settings.semesters[weeks[currentWeekIndex].semesterIndex].name}
+                            </div>
+                            <div className="text-xs text-stone-500 dark:text-stone-400 uppercase tracking-wider mt-1">
+                              Year {weeks[currentWeekIndex].yearIndex + 1} · Week {weeks[currentWeekIndex].weekNumber} of {weeks.filter(w => !w.isHoliday && w.semesterIndex === weeks[currentWeekIndex].semesterIndex).length}
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="font-serif text-2xl text-blue-600 dark:text-blue-400" style={{ fontFamily: "'DM Serif Display', serif" }}>
+                              Holiday Break
+                            </div>
+                            <div className="text-xs text-stone-500 dark:text-stone-400 uppercase tracking-wider mt-1">
+                              Year {weeks[currentWeekIndex].yearIndex + 1}
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      <div className="text-right text-xs text-stone-500 dark:text-stone-400 uppercase tracking-wider space-y-1">
+                        <div>Today: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+                        <div>Overall Week {weeks[currentWeekIndex].overallWeekNumber} of {weeks.length}</div>
+                      </div>
                     </div>
                   </div>
                 )}

@@ -10,6 +10,15 @@ interface WeekGridProps {
   onWeekClick: (week: WeekData) => void;
 }
 
+function getMonthRange(weeks: WeekData[]): string {
+  if (weeks.length === 0) return '';
+  const start = new Date(weeks[0].startDate + 'T00:00:00');
+  const end = new Date(weeks[weeks.length - 1].endDate + 'T00:00:00');
+  const startMon = start.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+  const endMon = end.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+  return startMon === endMon ? startMon : `${startMon}-${endMon}`;
+}
+
 export const WeekGrid: React.FC<WeekGridProps> = ({ weeks, settings, currentWeekIndex, onWeekClick }) => {
   // Group weeks by year
   const yearGroups = useMemo(() => {
@@ -64,12 +73,15 @@ export const WeekGrid: React.FC<WeekGridProps> = ({ weeks, settings, currentWeek
           <div className="space-y-3">
             {yearGroup.semesterGroups.map((semGroup, si) => (
               <div key={si} className="flex items-center gap-3">
-                <div className="w-20 text-right">
-                  <span className={`text-xs font-medium ${semGroup.isHoliday ? 'text-blue-400 dark:text-blue-500' : 'text-stone-500 dark:text-stone-400'}`}>
+                <div className="w-28 text-right shrink-0">
+                  <div className={`text-xs font-bold tracking-widest uppercase ${semGroup.isHoliday ? 'text-blue-400 dark:text-blue-500' : 'text-stone-500 dark:text-stone-400'}`}>
                     {semGroup.name}
-                  </span>
+                  </div>
+                  <div className="text-[10px] text-stone-400 dark:text-stone-500 mt-0.5">
+                    {getMonthRange(semGroup.weeks)}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1.5">
                   {semGroup.weeks.map((week) => {
                     const weekIdx = weeks.indexOf(week);
                     return (

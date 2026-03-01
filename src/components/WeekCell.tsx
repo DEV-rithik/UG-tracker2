@@ -48,7 +48,7 @@ export const WeekCell: React.FC<WeekCellProps> = ({ week, isCurrent, isPast, onC
 
   return (
     <div
-      className={`w-4 h-4 rounded-sm transition-transform relative ${isClickable ? 'cursor-pointer hover:scale-125 hover:z-10' : 'cursor-default opacity-50'} ${isCurrent ? 'ring-2 ring-stone-900 dark:ring-white ring-offset-1' : ''}`}
+      className={`w-7 h-7 rounded transition-transform relative ${isClickable ? 'cursor-pointer hover:scale-125 hover:z-10' : 'cursor-default opacity-50'} ${isCurrent ? 'ring-2 ring-stone-900 dark:ring-white ring-offset-1' : ''}`}
       style={{ backgroundColor: bgColor }}
       onClick={isClickable ? onClick : undefined}
       onMouseEnter={handleMouseEnter}
@@ -62,7 +62,7 @@ export const WeekCell: React.FC<WeekCellProps> = ({ week, isCurrent, isPast, onC
         aria-hidden={!tooltipVisible}
         className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 pointer-events-none transition-opacity duration-150 ${tooltipVisible ? 'opacity-100' : 'opacity-0'}`}
       >
-        <div className="bg-stone-900 dark:bg-stone-700 text-stone-200 text-xs font-medium tracking-widest uppercase px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
+        <div className="bg-stone-900 dark:bg-stone-700 text-stone-200 text-xs font-medium tracking-wider px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
           {tooltipText}
         </div>
         <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-stone-900 dark:border-t-stone-700" />
