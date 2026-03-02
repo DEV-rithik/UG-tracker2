@@ -7,9 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cap:build": "npm run build && npx cap copy android && npx cap sync android",
+    "cap:open": "npx cap open android",
+    "cap:run": "npx cap run android"
   },
   "dependencies": {
+    "@capacitor/android": "^8.1.0",
+    "@capacitor/cli": "^8.1.0",
+    "@capacitor/core": "^8.1.0",
     "dexie": "^4.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
