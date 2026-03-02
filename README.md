@@ -49,3 +49,39 @@ npm run build
 ## Privacy
 
 All data is stored locally in your browser using IndexedDB. Nothing leaves your device.
+
+## Building the Android APK
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+)
+- [Android Studio](https://developer.android.com/studio) installed
+- Android SDK configured
+
+### Steps
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Build and sync:**
+   ```bash
+   npm run cap:build
+   ```
+
+3. **Open in Android Studio:**
+   ```bash
+   npm run cap:open
+   ```
+
+4. **Build the APK:**
+   - In Android Studio: `Build → Build Bundle / APK → Build APK`
+   - The APK will be at: `android/app/build/outputs/apk/debug/app-debug.apk`
+
+5. **Transfer to your phone and install!**
+
+### Quick Run (with device connected)
+```bash
+npm run cap:run
+```
+
